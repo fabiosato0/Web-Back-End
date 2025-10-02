@@ -15,7 +15,7 @@ class Usuario {
     const db = getDB();
     await db.collection("usuarios").insertOne(this);
     } catch (error) {
-      console.error("Erro ao salvar usuário:", error);
+      Logger.error("Erro ao salvar usuário:", error);
     }
   }
 
@@ -24,7 +24,7 @@ class Usuario {
     const db = getDB();
     return await db.collection("usuarios").find().toArray();
     } catch (error) {
-      console.error("Erro ao listar usuários:", error);
+      Logger.error("Erro ao listar usuários:", error);
     }
   }
 
@@ -33,7 +33,7 @@ class Usuario {
     const db = getDB();
     return await db.collection("usuarios").findOne({ _id: new ObjectId(id) });
     } catch (error) {
-      console.error("Erro ao buscar usuário por ID:", error);
+      Logger.error("Erro ao buscar usuário por ID:", error);
     }
   }
 
@@ -46,7 +46,7 @@ class Usuario {
       { upsert: false }
     );
     } catch (error) {
-      console.error("Erro ao atualizar usuário:", error);
+      Logger.error("Erro ao atualizar usuário:", error);
     }
   }
 
@@ -55,7 +55,7 @@ class Usuario {
     const db = getDB();
     await db.collection("usuarios").deleteOne({ _id: new ObjectId(id) });
     } catch (error) {
-      console.error("Erro ao deletar usuário:", error);
+      Logger.error("Erro ao deletar usuário:", error);
     }
   }
 }
