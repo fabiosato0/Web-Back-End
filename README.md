@@ -15,6 +15,7 @@
 * [Como Começar](#como-começar)
   * [Pré-requisitos](#pré-requisitos)
   * [Instalação](#instalação)
+* [Como Usar](#como-usar)
 * [Autores](#autores)
 
 
