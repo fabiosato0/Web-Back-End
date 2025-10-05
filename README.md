@@ -15,7 +15,6 @@
 * [Como Começar](#como-começar)
   * [Pré-requisitos](#pré-requisitos)
   * [Instalação](#instalação)
-* [Como Usar](#como-usar)
 * [Autores](#autores)
 
 
@@ -97,17 +96,6 @@ Antes de começar, certifique-se de ter as seguintes ferramentas instaladas em s
     npm start
     ```
 A aplicação backend estará disponível em `http://localhost:3333` (ou a porta que você definiu).
-
----
-
-## Como Usar
-
-**Exemplo:**
-Após iniciar o servidor, você pode usar uma ferramenta como o [Insomnia](https://insomnia.rest/) ou [Postman](https://www.postman.com/) para testar os endpoints da API.
-
-1.  **POST** `/register` para criar um novo usuário.
-2.  **POST** `/login` para autenticar e receber um token.
-3.  **POST** `/photos` (com token de autorização) para fazer upload de uma foto.
 
 ---
 
