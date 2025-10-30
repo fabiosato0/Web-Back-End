@@ -1,50 +1,75 @@
+import express from "express";
+import path from "path";
+import hbs from "hbs";
 import { connectDB } from "./db.js";
-import Usuario from "./classes/usuario.js";
-import Album from "./classes/album.js";
-import Imagem from "./classes/imagem.js";
+import Usuario from "./model/usuario.js";
+import { fileURLToPath } from "url";
 
-async function main() {
+const app = express()
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.json())
+app.set("view engine", "hbs")
+app.set("views", path.join(__dirname, "view"));
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.urlencoded({ extended: false }));
+
+app.get("/", (req, res) => {
+  res.render("login")
+})
+
+app.post("/login", async (req, res) => {
   try {
-    await connectDB();
+    const { name, password } = req.body;
 
-    console.log("=== Testando CRUD de Album ===");
+    const usuario = await Usuario.buscaPorNome(name);
 
-    // Criar um álbum
-    const album = new Album("Viagem 2025", "user123");
-    await album.salvar();
-    console.log("Álbum criado com sucesso:", album);
+    if (usuario && usuario.senha === password) {
+      res.render("home");
+    } else {
+      res.render("login", { error: "Nome de usuário ou senha incorretos." });
+    }
+  } catch (error) {
+    console.error("Erro no /login:", error);
+    res.render("login", { error: "Ocorreu uma falha no login." });
+  }
 
-    // Listar por usuário
-    const albunsUser = await Album.listarPorUsuario("user123");
-    console.log("Álbuns do usuário:", albunsUser);
+})
 
-    // Buscar por ID correto
-    const albumEncontrado = await Album.buscarPorId(album._id);
-    console.log("Álbum encontrado:", albumEncontrado);
+app.get("/signup", (req, res) => {
+  res.render("signup")
+})
 
-    // Atualizar álbum
-    await Album.atualizar(album._id, { nome: "Viagem Atualizada" });
-    console.log("Álbum atualizado com sucesso.");
+app.post("/signup", async (req, res) => {
+  try {
+    // Pega os dados do formulário de signup.hbs
+    const { name, email, password } = req.body; 
 
-    // Buscar por ID errado (gera erro)
-    const albumInvalido = await Album.buscarPorId("id_invalido");
-    console.log("Álbum inválido (deveria cair no catch):", albumInvalido);
+    // Verifica se os campos existem
+    if (!name || !email || !password) {
+        return res.render("signup", { error: "Todos os campos são obrigatórios." });
+    }
 
-    // Adicionar imagem
-    await album.adicionarImagem("foto123");
-    console.log("Imagem adicionada ao álbum.");
+    // Cria um novo usuário usando a Classe
+    const usuario = new Usuario(name, email, password);
+    
+    // Salva no banco usando o método da classe
+    await usuario.salvar();
 
-    // Deletar álbum
-    await Album.deletar(album._id);
-    console.log("Álbum deletado com sucesso.");
+    console.log("Usuário salvo:", usuario);
 
-    // Deletar novamente (não existe mais → não dá erro, mas resultado é 0)
-    await Album.deletar(album._id);
-    console.log("Tentativa de deletar novamente concluída.");
+    // Redireciona para a home (ou para a tela de login) após cadastrar
+    res.render("home"); // Você precisa criar uma view 'home.hbs'
 
   } catch (error) {
-    console.error("Erro inesperado no main:", error);
+    console.log("Erro no /signup:", error);
+    // Se der erro, renderiza o signup de novo com uma mensagem
+    res.render("signup", { error: "Falha ao cadastrar. Tente outro nome ou email." });
   }
-}
+});
 
-main();
+app.listen(3000, () => {
+  console.log("port connected");
+})

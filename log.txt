@@ -1,1 +1,3 @@
 [2025-10-02T21:55:19.586Z] - Erro ao buscar álbum por ID: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[2025-10-30T15:44:47.142Z] - Erro ao salvar usuário:
+[2025-10-30T15:50:54.910Z] - Erro ao salvar usuário:
