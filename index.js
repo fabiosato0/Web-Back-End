@@ -172,6 +172,10 @@ app.post("/imagem/delete/:id", async (req, res) => {
       return res.redirect("/home");
     }
 
+    if (imagem.albumId) {
+      await Album.removerImagem(imagem.albumId, imagem._id);
+    }
+
     await Imagem.deletar(id);
 
     res.redirect("/home");
