@@ -37,6 +37,25 @@ class Usuario {
     }
   }
 
+  static async buscaPorNome(name) {
+    try {
+      const db = getDB();
+      if (!db) {
+        Logger.error("Erro ao buscar usuário por nome: Conexão com o DB não está pronta.");
+        return null; 
+      }
+
+      return await db.collection("usuarios").findOne({ nome: { $regex: `^${name}$`, $options: 'i' } });
+    } catch (error) {
+
+      Logger.error(`Erro ao buscar usuário por nome: ${error?.message || error}`);
+      return null; 
+    }
+  }
+
+
+
+
   static async atualizar(id, novosDados) {
     try{
     const db = getDB();

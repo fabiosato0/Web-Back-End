@@ -15,6 +15,7 @@ class Imagem {
     try {
       const db = getDB();
       await db.collection("imagens").insertOne(this);
+      console.log("imagem salva:", this);
     } catch (error) {
       Logger.log("Erro ao salvar imagem: " + error);
     }
@@ -23,11 +24,19 @@ class Imagem {
   static async listarPorUsuario(donoId) {
     try {
       const db = getDB();
-      return await db.collection("imagens").find({ donoId }).toArray();
+      if (!db) {
+        throw new Error("Conexão com o DB não está pronta.");
+      }
+      return await db.collection("imagens").find({ donoId: donoId }).toArray();
     } catch (error) {
-      Logger.log("Erro ao listar imagens por usuário: " + error);
+
+      Logger.error("Erro ao listar imagens por usuário: " + (error?.message || error));
+      return []; 
     }
   }
+
+
+
 
   static async buscarPorId(id) {
     try {

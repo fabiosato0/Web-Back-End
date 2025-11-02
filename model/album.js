@@ -15,7 +15,7 @@ class Album {
     const db = getDB();
     await db.collection("albuns").insertOne(this);
     } catch (error) {
-      Logger.log("Erro ao salvar álbum: " + error);
+      Logger.error("Erro ao salvar álbum: " + error);
     }
   }
 
@@ -24,7 +24,7 @@ class Album {
     const db = getDB();
     return await db.collection("albuns").find({ donoId }).toArray();
     } catch (error) {
-      Logger.log("Erro ao listar álbuns por usuário: " + error);
+      Logger.error("Erro ao listar álbuns por usuário: " + error);
     }
 }
 
@@ -33,7 +33,7 @@ class Album {
       const db = getDB();
       return await db.collection("albuns").findOne({ _id: new ObjectId(id) });
     } catch (error) {
-      Logger.log("Erro ao buscar álbum por ID: " + error);
+      Logger.error("Erro ao buscar álbum por ID: " + error);
     }
   }
 
@@ -46,7 +46,7 @@ class Album {
         { upsert: false }
       );
     } catch (error) {
-      Logger.log("Erro ao atualizar álbum: " + error);
+      Logger.error("Erro ao atualizar álbum: " + error);
     }
   }
 
@@ -55,22 +55,25 @@ class Album {
       const db = getDB();
       await db.collection("albuns").deleteOne({ _id: new ObjectId(id) });
     } catch (error) {
-      Logger.log("Erro ao deletar álbum: " + error);
+      Logger.error("Erro ao deletar álbum: " + error);
     }
   }
 
-  async adicionarImagem(imagemId) {
+  static async adicionarImagem(albumId, imagemId) {
     try {
       const db = getDB();
-      this.imagens.push(imagemId);
+      if (!db) { throw new Error("Conexão com o DB não está pronta."); }
+      
       await db.collection("albuns").updateOne(
-        { _id: this._id },
-        { $push: { imagens: imagemId } }
+        { _id: new ObjectId(albumId) },
+        // $addToSet: Adiciona ao array apenas se o item não existir
+        { $addToSet: { imagens: new ObjectId(imagemId) } } 
       );
     } catch (error) {
-      Logger.log("Erro ao adicionar imagem ao álbum: " + error);
+      Logger.log("Erro ao adicionar imagem ao álbum: " + (error?.message || error));
     }
   }
+
 }
 
 export default Album;
