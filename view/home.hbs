@@ -48,7 +48,7 @@
             <div class="info">
                 <h4>Foto: {{this.titulo}}</h4>
                 <br>Dono: {{this.donoId}}
-                <label for="rename-{{this._id}}" style="margin-top: 10px;">Renomear:</label>
+
                 <form action="/imagem/set-album/{{this._id}}" method="POST">
                     <label for="albumId-{{this._id}}">Mover para:</label>
                     <select name="albumId" id="albumId-{{this._id}}">
