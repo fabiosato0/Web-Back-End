@@ -138,9 +138,10 @@ button:hover, .btn:hover {
     gap: 5px;
 }
 .form-inline input {
+    width: auto;
     flex: 1; 
     margin-bottom: 0;
 }
 .form-inline button {
-    width: 100px; 
+    width: auto; 
 }
