@@ -70,3 +70,5 @@
 [2025-11-02T19:19:03.348Z] - Erro ao mover imagem: Cannot read properties of undefined (reading 'toString')
 [2025-11-02T19:19:12.877Z] - Erro ao mover imagem: Album.adicionarImagem is not a function
 [2025-11-02T19:19:28.831Z] - Erro ao mover imagem: Album.adicionarImagem is not a function
+[2025-11-04T17:10:38.717Z] - Erro ao mover imagem: Album.removerImagem is not a function
+[2025-11-04T17:10:44.612Z] - Erro ao mover imagem: Album.removerImagem is not a function

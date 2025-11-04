@@ -2,59 +2,81 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title> 
+    <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
-    <h1>Home </h1>
-    <a href="/album">Álbum</a> <br>
-    <a href="/logout">Sair</a> <br>
+<div class="container">
 
-    <form action="/imagem" method="post">
-        <label for="content"> Título: </label>
-        <input type="text" name="titulo" value="" /> <br>
-        <label for="content"> URL: </label>
-        <input type="text" name="url" value="" /> <br> <br>
-        <button type="submit"> Adicionar</button>
-    </form>
+    {{#if success_msg}}
+        <div class="alert alert-success" role="alert">
+            {{success_msg}}
+        </div>
+    {{/if}}
 
-    <div class="gallery">
-         
-        {{#each imagens}}
-        <div class="foto-card">
+    {{#if error_msg}}
+        <div class="alert alert-danger" role="alert">
+            {{error_msg}}
+        </div>
+    {{/if}}
+  
+    <h1>Home </h1>
+    <a href="/album" class="btn">Meus Álbuns</a>
+    <a href="/logout" class="btn btn-delete" style="float: right;">Sair</a> 
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
 
-            <div class="info">
-                <h4>Foto: {{this.titulo}}</h4>
-                <pre>ID: {{this._id}}<br>Dono: {{this.donoId}}</pre>
+    <h3>Adicionar Nova Imagem</h3>
+    <form action="/imagem" method="post">
+        <label for="titulo"> Título: </label>
+        <input type="text" id="titulo" name="titulo" value="" placeholder="Ex: Gatinho fofo" />
+        <label for="url"> URL: </label>
+        <input type="text" id="url" name="url" value="" placeholder="https://..."/>
+        <button type="submit"> Adicionar Imagem</button>
+    </form>
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
 
-                <form action="/imagem/set-album/{{this._id}}" method="POST">
-                    <div class="form-row">
-                        <label for="albumId">Álbum:</label>
-                        <select name="albumId" id="albumId">
-                            <option value="">(Sem Álbum)</option><!-- Loop para listar os álbuns do usuário -->
-                            <!-- FIX: Usa ../albuns para aceder ao contexto pai -->
-                            {{#each ../albuns}}
-                            <option value="{{this._id}}">{{this.nome}}</option>
-                            {{/each}}
-                        </select>
-                    </div>
-                    <button type="submit" style="margin-top: 5px;">Mover</button>
-                </form>
-            </div>
+    <h2>Minhas Imagens</h2>
+    <div class="gallery">
+        
+        {{#each imagens}}
 
-            <form action="/imagem/delete/{{this._id}}" method="post">
-                <button type="submit">Apagar</button>
-            </form>
-        </div>
-    </div>
-    {{else}}
+        <div class="foto-card">
 
-    <p>Você ainda não tem nenhuma imagem. Adicione uma no formulário acima!</p>
+            <div class="info">
+                <h4>Foto: {{this.titulo}}</h4>
+                <br>Dono: {{this.donoId}}
 
-    {{/each}}
-    </div>
+                <form action="/imagem/set-album/{{this._id}}" method="POST">
+                    <label for="albumId-{{this._id}}">Mover para:</label>
+                    <select name="albumId" id="albumId-{{this._id}}">
+                        <option value="">(Sem Álbum)</option>
+                        {{#each ../albuns}}
+                        <option value="{{this._id}}">{{this.nome}}</option>
+                        {{/each}}
+                    </select>
+                    <button type="submit" class="btn-move" style="width: 100%; margin-top: 5px;">Mover</button>
+                </form>
+            </div>
+
+            <form action="/imagem/rename/{{this._id}}" method="POST" class="form-inline" style="margin-top: 10px;">
+                <input type="text" name="novoTitulo" value="{{this.titulo}}" placeholder="Novo título" required>
+                <button type="submit" class="btn-rename">OK</button>
+            </form>
+
+            <form action="/imagem/delete/{{this._id}}" method="post" style="margin-top: 10px;">
+                <button type="submit" class="btn-delete" style="width: 100%;">Apagar</button>
+            </form>
+        </div>
+    
+        {{else}}
+        <p>Você ainda não tem nenhuma imagem. Adicione uma no formulário acima!</p>
+        {{/each}}
+    </div>
+
+</div> 
 </body>
 
 </html>
