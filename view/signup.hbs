@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar</title>
-    <link rel="stylesheet" href="/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrar</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
-    <div class="container">
+  <div class="container">
 
-        {{#if success_msg}}
-  T       <div class="alert alert-success" role="alert">
-                {{success_msg}}
-            </div>
-        {{/if}}
+    {{#if success_msg}}
+ T    <div class="alert alert-success" role="alert">
+        {{success_msg}}
+      </div>
+    {{/if}}
 
-        {{#if error_msg}}
-            <div class="alert alert-danger" role="alert">
-                {{error_msg}}
-            </div>
-        {{/if}}
+    {{#if error_msg}}
+      <div class="alert alert-danger" role="alert">
+        {{error_msg}}
+      </div>
+    {{/if}}
 
-        <h2>Registrar</h2>
-        <form action="/signup" method="post">
-            <input type="text" name="name" placeholder="Nome de usuário">
-            <input type="email" name="email" placeholder="Email">
-            <input type="password" name="password" placeholder="Password">
-            <button type="submit">Cadastrar</button> 
-        </form>
-    
-    </div> 
+    <h2>Registrar</h2>
+    <form action="/signup" method="post">
+      <input type="text" name="name" placeholder="Nome de usuário">
+      <input type="email" name="email" placeholder="Email">
+      <input type="password" name="password" placeholder="Password">
+      <button type="submit">Cadastrar</button> 
+    </form>
+  
+  </div> 
 </body>
 </html>

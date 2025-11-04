@@ -1,59 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus Álbuns</title>
-    <link rel="stylesheet" href="/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meus Álbuns</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
 <div class="container">
 
-    <a href="/home" class="btn">&larr; Voltar para Home</a>
+  <a href="/home" class="btn">&larr; Voltar para Home</a>
 
-    {{#if success_msg}}
-        <div class="alert alert-success" role="alert">
-            {{success_msg}}
-        </div>
-    {{/if}}
+  {{#if success_msg}}
+    <div class="alert alert-success" role="alert">
+      {{success_msg}}
+    </div>
+  {{/if}}
 
-    {{#if error_msg}}
-        <div class="alert alert-danger" role="alert">
-            {{error_msg}}
-        </div>
-    {{/if}}
+  {{#if error_msg}}
+    <div class="alert alert-danger" role="alert">
+      {{error_msg}}
+    </div>
+  {{/if}}
 
 
-    <h3>Criar Novo Álbum</h3>
-    <form action="/album" method="POST">
-        <label for="name">Nome do Álbum:</label>
-        <input type="text" id="name" name="name" required placeholder="Ex: Viagem de Férias">
-        <button type="submit">Criar</button>
-    </form>
-    <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+  <h3>Criar Novo Álbum</h3>
+  <form action="/album" method="POST">
+    <label for="name">Nome do Álbum:</label>
+    <input type="text" id="name" name="name" required placeholder="Ex: Viagem de Férias">
+    <button type="submit">Criar</button>
+  </form>
+  <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
 
-    <h2>Seus Álbuns</h2>
-    <div class="album-grid">
-        {{#each albuns}}
-        <div class="album-card">
-            <h4>{{this.nome}}</h4>
-            <p>Contém {{this.imagens.length}} imagens</p>
+  <h2>Seus Álbuns</h2>
+  <div class="album-grid">
+    {{#each albuns}}
+    <div class="album-card">
+      <h4>{{this.nome}}</h4>
+      <p>Contém {{this.imagens.length}} imagens</p>
 
-            <form action="/album/rename/{{this._id}}" method="POST" class="form-inline">
-                <input type="text" name="novoNome" value="{{this.nome}}" placeholder="Novo nome" required>
-                <button type="submit" class="btn-rename">OK</button>
-            </form>
-            
-            <form action="/album/delete/{{this._id}}" method="POST" style="margin-top: 10px;">
-                <button type="submit" class="btn-delete" style="width: 100%;">Apagar Álbum</button>
-            </form>
-        </div>
-        {{else}}
-            <p>Você ainda não tem nenhum álbum. Crie um acima!</p>
-        {{/each}}
-    </div>
-    
+      <form action="/album/rename/{{this._id}}" method="POST" class="form-inline">
+        <input type="text" name="novoNome" value="{{this.nome}}" placeholder="Novo nome" required>
+        <button type="submit" class="btn-rename">OK</button>
+      </form>
+      
+      <form action="/album/delete/{{this._id}}" method="POST" style="margin-top: 10px;">
+        <button type="submit" class="btn-delete" style="width: 100%;">Apagar Álbum</button>
+      </form>
+    </div>
+    {{else}}
+      <p>Você ainda não tem nenhum álbum. Crie um acima!</p>
+    {{/each}}
+  </div>
+  
 </div>
 </body>
 </html>
