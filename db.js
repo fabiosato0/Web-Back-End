@@ -8,7 +8,6 @@ let db;
 export async function connectDB() {
   await client.connect();
   db = client.db("bancoDeImagens"); 
-  console.log("Conectado ao MongoDB");
 }
 
 export function getDB() {

@@ -1,1 +1,72 @@
 [2025-10-02T21:55:19.586Z] - Erro ao buscar álbum por ID: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+[2025-10-30T15:44:47.142Z] - Erro ao salvar usuário:
+[2025-10-30T15:50:54.910Z] - Erro ao salvar usuário:
+[2025-10-30T18:55:49.557Z] - Erro ao salvar usuário:
+[2025-10-30T18:56:03.776Z] - Erro ao buscar usuário por nome:
+[2025-10-30T18:56:21.203Z] - Erro ao buscar usuário por nome:
+[2025-10-30T18:57:09.063Z] - Erro ao buscar usuário por nome:
+[2025-10-30T18:58:13.098Z] - Erro ao buscar usuário por nome:
+[2025-10-30T18:59:11.264Z] - Erro ao buscar usuário por nome:
+[2025-10-30T19:01:22.054Z] - Erro ao buscar usuário por nome:
+[2025-10-30T19:04:37.669Z] - Erro ao buscar usuário por nome:
+[2025-10-30T19:04:54.543Z] - Erro ao salvar usuário:
+[2025-10-30T19:05:04.529Z] - Erro ao buscar usuário por nome:
+[2025-10-30T19:24:18.167Z] - Erro ao buscar usuário por nome:
+[2025-10-30T19:27:26.982Z] - Erro ao buscar usuário por nome:
+[2025-10-30T19:28:34.642Z] - Erro ao buscar usuário por nome:
+[2025-10-30T19:29:51.383Z] - Erro ao buscar usuário por nome:
+[2025-10-30T19:31:55.927Z] - Erro ao buscar usuário por nome:
+[2025-10-30T19:32:05.214Z] - Erro ao buscar usuário por nome:
+[2025-10-30T19:32:36.474Z] - Erro ao salvar usuário:
+[2025-10-30T19:33:25.144Z] - Erro ao buscar usuário por nome:
+[2025-10-30T19:34:24.386Z] - Erro ao buscar usuário por nome:
+[2025-10-30T19:37:42.267Z] - Erro ao buscar usuário por nome:
+[2025-10-30T19:38:21.377Z] - Erro ao buscar usuário por nome:
+[2025-10-30T19:38:24.761Z] - Erro ao buscar usuário por nome:
+[2025-10-30T19:39:31.775Z] - Erro ao buscar usuário por nome:
+[2025-10-30T19:40:18.500Z] - Erro ao buscar usuário por nome:
+[2025-10-30T19:40:26.708Z] - Erro ao buscar usuário por nome:
+[2025-10-30T19:43:30.660Z] - Erro ao buscar usuário por nome: Conexão com o DB não está pronta.
+[2025-10-30T19:45:41.773Z] - Erro ao buscar usuário por nome: Conexão com o DB não está pronta.
+[2025-10-30T19:49:35.466Z] - Erro ao buscar usuário por nome: Conexão com o DB não está pronta.
+[2025-10-30T19:49:55.920Z] - Erro ao buscar usuário por nome: Conexão com o DB não está pronta.
+[2025-10-31T23:40:54.915Z] - Erro ao salvar imagem: Imagem is not defined
+[2025-10-31T23:42:10.059Z] - Erro ao salvar imagem: imagem is not defined
+[2025-11-01T00:10:46.980Z] - Erro ao salvar imagem: imagem is not defined
+[2025-11-01T00:10:52.536Z] - Erro ao salvar imagem: imagem is not defined
+[2025-11-02T16:06:17.856Z] - Erro ao deletar imagem: imagem.donoId.equals is not a function
+[2025-11-02T16:06:24.382Z] - Erro ao deletar imagem: imagem.donoId.equals is not a function
+[2025-11-02T16:06:26.730Z] - Erro ao deletar imagem: imagem.donoId.equals is not a function
+[2025-11-02T16:06:28.316Z] - Erro ao deletar imagem: imagem.donoId.equals is not a function
+[2025-11-02T17:36:55.003Z] - Erro ao salvar álbum: Logger.log is not a function
+[2025-11-02T17:37:11.052Z] - Erro ao salvar álbum: Logger.log is not a function
+[2025-11-02T17:37:22.203Z] - Erro ao salvar álbum: Logger.log is not a function
+[2025-11-02T17:38:04.205Z] - Erro ao salvar álbum: Logger.log is not a function
+[2025-11-02T17:38:12.313Z] - Erro ao salvar álbum: Logger.log is not a function
+[2025-11-02T17:38:36.413Z] - Tentativa de salvar álbum sem nome.
+[2025-11-02T17:38:44.585Z] - Tentativa de salvar álbum sem nome.
+[2025-11-02T17:42:16.343Z] - Tentativa de salvar álbum sem nome.
+[2025-11-02T17:42:22.499Z] - Tentativa de salvar álbum sem nome.
+[2025-11-02T17:43:12.438Z] - Tentativa de salvar álbum sem nome.
+[2025-11-02T17:43:21.200Z] - Tentativa de salvar álbum sem nome.
+[2025-11-02T17:43:46.462Z] - Tentativa de salvar álbum sem nome.
+[2025-11-02T17:44:14.964Z] - Erro ao salvar álbum: idonoId is not defined
+[2025-11-02T17:44:17.589Z] - Erro ao salvar álbum: idonoId is not defined
+[2025-11-02T17:44:31.509Z] - Tentativa de salvar álbum sem nome.
+[2025-11-02T17:50:14.347Z] - Tentativa de salvar álbum sem nome.
+[2025-11-02T17:50:28.736Z] - Tentativa de salvar álbum sem nome.
+[2025-11-02T17:51:24.636Z] - Tentativa de salvar álbum sem nome.
+[2025-11-02T17:51:34.441Z] - Tentativa de salvar álbum sem nome.
+[2025-11-02T18:56:05.587Z] - Erro ao mover imagem: Cannot read properties of undefined (reading 'toString')
+[2025-11-02T18:56:17.665Z] - Erro ao mover imagem: ObjectId is not defined
+[2025-11-02T18:59:06.460Z] - Erro ao mover imagem: ObjectId is not defined
+[2025-11-02T19:01:11.422Z] - Erro ao mover imagem: Cannot read properties of undefined (reading 'toString')
+[2025-11-02T19:01:22.034Z] - Erro ao mover imagem: Album.adicionarImagem is not a function
+[2025-11-02T19:02:54.203Z] - Erro ao mover imagem: Cannot read properties of undefined (reading 'toString')
+[2025-11-02T19:06:04.720Z] - Erro ao mover imagem: Album.removerImagem is not a function
+[2025-11-02T19:06:12.674Z] - Erro ao mover imagem: Album.removerImagem is not a function
+[2025-11-02T19:17:32.490Z] - Erro ao mover imagem: Cannot read properties of undefined (reading 'toString')
+[2025-11-02T19:17:42.404Z] - Erro ao mover imagem: Album.adicionarImagem is not a function
+[2025-11-02T19:19:03.348Z] - Erro ao mover imagem: Cannot read properties of undefined (reading 'toString')
+[2025-11-02T19:19:12.877Z] - Erro ao mover imagem: Album.adicionarImagem is not a function
+[2025-11-02T19:19:28.831Z] - Erro ao mover imagem: Album.adicionarImagem is not a function
