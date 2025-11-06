@@ -73,7 +73,16 @@ class Album {
       Logger.log("Erro ao adicionar imagem ao álbum: " + (error?.message || error));
     }
   }
+  
+static async removerImagem(albumId, imagemId) {
+  const db = getDB();
+  await db.collection("albuns").updateOne(
+    { _id: new ObjectId(albumId) },
+    { $pull: { imagens: new ObjectId(imagemId) } }
+  );
+}
 
 }
+
 
 export default Album;

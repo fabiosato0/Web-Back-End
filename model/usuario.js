@@ -1,6 +1,7 @@
 import { ObjectId } from "bson";
 import { getDB } from "../db.js";
 import Logger from "../logger.js";
+import bcrypt from "bcrypt";
 
 class Usuario {
   constructor(nome, email, senha) {
@@ -13,6 +14,9 @@ class Usuario {
   async salvar() {
     try{
     const db = getDB();
+    const saltRounds = 10;
+    const hash = await bcrypt.hash(this.senha, saltRounds);
+    this.senha = hash;
     await db.collection("usuarios").insertOne(this);
     } catch (error) {
       Logger.error("Erro ao salvar usuário:", error);

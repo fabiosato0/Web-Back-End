@@ -39,7 +39,7 @@
     <div class="album-card">
       <h4>{{this.nome}}</h4>
       <p>Contém {{this.imagens.length}} imagens</p>
-
+      <pre>{{{json this}}}</pre>
       <form action="/album/rename/{{this._id}}" method="POST" class="form-inline">
         <input type="text" name="novoNome" value="{{this.nome}}" placeholder="Novo nome" required>
         <button type="submit" class="btn-rename">OK</button>

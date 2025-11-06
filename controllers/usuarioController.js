@@ -2,6 +2,7 @@ import Usuario from "../model/usuario.js";
 import Imagem from "../model/imagem.js";
 import Album from "../model/album.js";
 import Logger from "../logger.js";
+import bcrypt from "bcrypt";
 
 export async function showLogin(req, res) {
   if (req.session.userId) return res.redirect("/home");
@@ -12,14 +13,26 @@ export async function loginUser(req, res) {
   try {
     const { name, password } = req.body;
     const usuario = await Usuario.buscaPorNome(name);
-    if (usuario && usuario.senha === password) {
-      req.session.userId = usuario._id;
-      req.session.login = usuario.nome;
-      req.flash("success_msg", "Login efetuado com sucesso!");
-      return res.redirect("/home");
+
+    if (!usuario) {
+      req.flash("error_msg", "Usuário não encontrado.");
+      return res.redirect("/login");
     }
-    req.flash("error_msg", "Nome de usuário ou senha incorretos.");
-    res.redirect("/login");
+
+    // 🔐 Compara a senha digitada com o hash
+    const senhaCorreta = await bcrypt.compare(password, usuario.senha);
+
+    if (!senhaCorreta) {
+      req.flash("error_msg", "Senha incorreta.");
+      return res.redirect("/login");
+    }
+
+    // Se tudo certo, cria a sessão
+    req.session.userId = usuario._id;
+    req.session.login = usuario.nome;
+    req.flash("success_msg", "Login efetuado com sucesso!");
+    res.redirect("/home");
+
   } catch (error) {
     Logger.error("Erro no login: " + error);
     req.flash("error_msg", "Falha no login.");
@@ -56,6 +69,12 @@ export async function createUser(req, res) {
 }
 
 export async function showHome(req, res) {
+  
+    if (!req.session?.userId) {
+    req.flash("error_msg", "Sua sessão expirou. Faça login novamente.");
+    return res.redirect("/login");
+  }
+
   try {
     const imagens = await Imagem.listarPorUsuario(req.session.userId);
     const albuns = await Album.listarPorUsuario(req.session.userId);

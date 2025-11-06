@@ -49,6 +49,13 @@ export async function deletarImagem(req, res) {
       return res.redirect("/home");
     }
 
+    if (imagem.albumId) {
+      await Album.removerImagem(imagem.albumId.toString(), id)
+        .catch(() => {
+          Logger.warn(`Falha ao remover imagem ${id} do álbum ${imagem.albumId}`);
+        });
+    }
+
     await Imagem.deletar(id);
     req.flash("success_msg", "Imagem deletada com sucesso!");
     res.redirect("/home");
@@ -105,6 +112,7 @@ export async function moverImagem(req, res) {
       req.flash("error_msg", "Imagem não encontrada.");
       return res.redirect("/home");
     }
+
     if (imagem.donoId.toString() !== donoIdDaSessao.toString()) {
       req.flash("error_msg", "Você não tem permissão para mover esta imagem.");
       return res.redirect("/home");
@@ -112,13 +120,17 @@ export async function moverImagem(req, res) {
 
     const novoAlbumId = req.body.albumId?.trim() || null;
     const antigoAlbumId = imagem.albumId?.toString() || null;
-
+    
+    if (antigoAlbumId && antigoAlbumId !== novoAlbumId) {
+      await Album.removerImagem(antigoAlbumId, imagemId).catch(() => {
+        Logger.warn(`Falha ao remover imagem ${imagemId} do álbum antigo ${antigoAlbumId}`);
+      });
+    }
     if (novoAlbumId) {
       await Imagem.atualizar(imagemId, { albumId: new ObjectId(novoAlbumId) });
-      if (novoAlbumId !== antigoAlbumId) await Album.adicionarImagem(novoAlbumId, imagemId);
+      await Album.adicionarImagem(novoAlbumId, imagemId);
     } else {
       await Imagem.atualizar(imagemId, { albumId: null });
-      if (antigoAlbumId) await Album.removerImagem(antigoAlbumId, imagemId).catch(()=>{});
     }
 
     req.flash("success_msg", "Imagem movida para o álbum com sucesso!");

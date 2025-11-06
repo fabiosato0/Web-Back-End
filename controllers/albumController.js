@@ -4,6 +4,11 @@ import Imagem from "../model/imagem.js";
 import Logger from "../logger.js";
 
 export async function listarAlbuns(req, res) {
+     
+  if (!req.session?.userId) {
+    req.flash("error_msg", "Sua sessão expirou. Faça login novamente.");
+    return res.redirect("/login");
+  }
   try {
     const albuns = await Album.listarPorUsuario(req.session.userId);
     res.render("album", {
