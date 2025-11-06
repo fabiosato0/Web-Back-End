@@ -66,7 +66,6 @@ class Album {
       
       await db.collection("albuns").updateOne(
         { _id: new ObjectId(albumId) },
-        // $addToSet: Adiciona ao array apenas se o item não existir
         { $addToSet: { imagens: new ObjectId(imagemId) } } 
       );
     } catch (error) {

@@ -19,7 +19,6 @@ export async function loginUser(req, res) {
       return res.redirect("/login");
     }
 
-    // 🔐 Compara a senha digitada com o hash
     const senhaCorreta = await bcrypt.compare(password, usuario.senha);
 
     if (!senhaCorreta) {
@@ -27,7 +26,6 @@ export async function loginUser(req, res) {
       return res.redirect("/login");
     }
 
-    // Se tudo certo, cria a sessão
     req.session.userId = usuario._id;
     req.session.login = usuario.nome;
     req.flash("success_msg", "Login efetuado com sucesso!");
@@ -38,7 +36,7 @@ export async function loginUser(req, res) {
     req.flash("error_msg", "Falha no login.");
     res.redirect("/login");
   }
-}
+}w
 
 export function logoutUser(req, res) {
   req.session.destroy(() => res.redirect("/"));

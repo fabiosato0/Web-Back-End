@@ -1,4 +1,3 @@
-// controllers/imagemController.js
 import Imagem from "../model/imagem.js";
 import Album from "../model/album.js";
 import Logger from "../logger.js";

@@ -1,4 +1,3 @@
-// controllers/albumController.js
 import Album from "../model/album.js";
 import Imagem from "../model/imagem.js";
 import Logger from "../logger.js";
@@ -93,8 +92,7 @@ export async function deletarAlbum(req, res) {
       req.flash("error_msg", "Você não tem permissão para apagar este álbum.");
       return res.redirect("/album");
     }
-
-    // define albumId = null em imagens que pertencem a esse álbum
+    
     await Imagem.removerAlbumDeImagens(id);
     await Album.deletar(id);
 
